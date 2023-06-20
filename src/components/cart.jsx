@@ -17,8 +17,7 @@ export default ({ name, img, price, id, setCart }) => {
           <p className=" opensans-b text-sm my-2 text-slate-800">{name}</p>
           <p className="text-sm opensans-b flex items-center text-slate-600">
             <FaDollarSign className="sm:text-sm text-xs" />
-            {price}{" "}
-            <span className="text-gray-400 text-xs opensans">/night</span>
+            {price}
           </p>
         </div>
         <div className="">

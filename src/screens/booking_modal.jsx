@@ -1,7 +1,12 @@
 import { MdClose } from "react-icons/md";
 import addcart from "../components/addcart";
+import Datepicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-export default ({ setBooking, name, price, setCart, img, notify }) => {
+import { useState } from "react";
+export default ({ setBooking, name, price, setCart, img, notify, error }) => {
+  const [checkin, setCheckin] = useState(new Date());
+  const [checkout, setCheckout] = useState(new Date());
   return (
     <div
       id="booking-modal"
@@ -30,8 +35,15 @@ export default ({ setBooking, name, price, setCart, img, notify }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            addcart(name, img, price, setCart);
-            notify("Room Booked");
+            if (checkin < checkout) {
+              const days = Math.round((checkout - checkin) / 86400000);
+              price = days * price;
+              addcart(name, img, price, setCart);
+              notify("Room Booked");
+              setBooking(false);
+            } else {
+              error("Check out date is invalid");
+            }
           }}
           className="flex flex-col items-center p-4"
         >
@@ -39,20 +51,20 @@ export default ({ setBooking, name, price, setCart, img, notify }) => {
           <div>
             <div className="flex items-center">
               <p className="text-xs mx-3">Checkin date:</p>
-              <input
-                required
-                type="date"
-                placeholder="Check in date"
-                className="border-2 rounded p-1 px-3 text-xs opensans-b border-slate-800"
+              <Datepicker
+                selected={checkin}
+                className="border-2 text-sm px-3 bg-white rounded border-black"
+                onChange={(e) => {
+                  setCheckin(e);
+                }}
               />
             </div>
             <div className="flex items-center my-2">
               <p className="text-xs mx-3">Checkout date:</p>
-              <input
-                required
-                type="date"
-                placeholder="Check in date"
-                className="border-2 rounded p-1 px-3 text-xs opensans-b border-slate-800"
+              <Datepicker
+                selected={checkout}
+                onChange={(e) => setCheckout(e)}
+                className="border-2 text-sm bg-white px-3 rounded border-black"
               />
             </div>
           </div>

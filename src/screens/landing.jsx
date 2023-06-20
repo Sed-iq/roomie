@@ -48,6 +48,17 @@ export default ({ show }) => {
       hideProgressBar: true,
       closeButton: false,
     });
+  const err = (message) => {
+    toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 300,
+      theme: "dark",
+      closeOnClick: true,
+      className: "text-sm",
+      hideProgressBar: true,
+      closeButton: false,
+    });
+  };
   const $cart = JSON.parse(localStorage.getItem("cart_data"));
   const [cart, setCart] = useState($cart.length);
   const [about, setAbout] = useState(false);
@@ -61,6 +72,7 @@ export default ({ show }) => {
       {booking == true ? (
         <Booking_modal
           img={img}
+          error={err}
           setCart={setCart}
           notify={notify}
           price={price}
