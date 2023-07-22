@@ -2,6 +2,10 @@ import { FaGlobeAfrica } from "react-icons/fa";
 import addcart from "./addcart";
 import slide from "./slide";
 export default ({
+  setBook,
+  setImg,
+  setName,
+  setPrice,
   one,
   two,
   reverse,
@@ -10,8 +14,6 @@ export default ({
   third,
   fourth,
   icon,
-  setCart,
-  notify,
 }) => {
   const price1 = 200;
   const price2 = 300;
@@ -31,7 +33,6 @@ export default ({
         className="sm:w-1/2 relative bg-gray-800 flex justify-between sm:m-0 my-4 sm:mx-6 h-60 sm:h-full bg-center bg-no-repeat rounded bg-grey-300 "
       >
         <div
-          // onTouchStart={(e) => slide(e)}
           onMouseEnter={(e) => slide(e)}
           onMouseLeave={(e) => slide(e)}
           className="absolute bg-transparent  z-10 w-full h-4/5 left-0 "
@@ -48,11 +49,7 @@ export default ({
           </div>
           {/* Details */}
         </div>
-        <div
-          // onMouseEnter={(e) => slide(e)}
-
-          className="w-2/5 hidden"
-        >
+        <div className="w-2/5 hidden">
           <div
             id="side-pane"
             className="w-full  bg-black-a rounded-br rounded-tr h-full"
@@ -70,8 +67,10 @@ export default ({
                 <div className=" flex justify-between items-center">
                   <button
                     onClick={() => {
-                      notify("Room Added to Cart!");
-                      addcart(`${(first, second)}`, one, price1, setCart);
+                      setName(`${first} ${second} hotel`);
+                      setBook(true);
+                      setImg(one);
+                      setPrice(price1);
                     }}
                     className="opensans-b duration-200 hover:bg-gray-500 hover:text-white text-xs sm:text-sm w-3/4 bg-white py-1 sm:p-2 px-3"
                   >
@@ -117,8 +116,10 @@ export default ({
           <div className="w-full px-2 flex sm:justify-start justify-between items-center">
             <button
               onClick={() => {
-                notify("Room Added to Cart!");
-                addcart(`${(third, fourth)}`, two, price2, setCart);
+                setName(`${third} ${fourth} hotel`);
+                setBook(true);
+                setImg(two);
+                setPrice(price2);
               }}
               className="opensans-b duration-200 sm:text-base hover:bg-gray-500 hover:text-white text-xs w-3/4 bg-white p-2 sm:p-2 px-3
              my-2"

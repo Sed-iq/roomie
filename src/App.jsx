@@ -6,7 +6,6 @@ import { useState } from "react";
 import Loading from "./screens/loading";
 export default () => {
   if (localStorage.getItem("cart_data") == null)
-    // console.log(localStorage.getItem("cart_data"));
     localStorage.setItem("cart_data", JSON.stringify([]));
   const [load, setLoad] = useState(false); // simulate loadtime
   return load == true ? (

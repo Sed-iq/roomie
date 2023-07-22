@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { FaExclamationTriangle, FaSpinner } from "react-icons/fa";
 
 export default () => {
   const email = localStorage.getItem("email");
   const amount = localStorage.getItem("total");
-
-  if (email == null || amount == null) {
+  const [failed, setFailed] = useState(false);
+  if (email == null || amount == null || failed == true) {
     return (
       <div
         id="checkout_modal"
@@ -17,7 +18,8 @@ export default () => {
       </div>
     );
   } else {
-    payer(email, amount);
+    payer(email, amount, setFailed);
+
     return (
       <div
         id="checkout_modal"
@@ -29,6 +31,7 @@ export default () => {
     );
   }
 };
-function payer(email, amount) {
+function payer(email, amount, setFailed) {
   const p = PAY(email, amount);
+  if (p == false) setFailed(true);
 }

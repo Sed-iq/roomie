@@ -69,38 +69,6 @@ export default ({ setInfoicon, email, setemail }) => {
             />
           </div>
         </div>
-        <div className="my-5 w-full ">
-          <p className="text-sm opensans-b">Check in date</p>
-          <div className="bg-white flex justify-between border-2 border-gray-200 items-center p-2 rounded my-3 w-3/4w-full">
-            <MdEditCalendar className="text-xl text-gray-400" />
-            <input
-              onChange={(e) => setCheckin(e.target.value)}
-              type="date"
-              required
-              className="text-xs mx-3 text-gray-700 outline-none p-2 sm:py-1 w-full h-full"
-            />
-            <FaCheckCircle
-              className={checkin == "" ? "text-gray-400" : "text-green-600"}
-            />
-          </div>
-        </div>
-        <div className="my-5 w-full ">
-          <p className="text-sm opensans-b">Check out date</p>
-          <div className="bg-white flex justify-between border-2 border-gray-200 items-center p-2 rounded my-3 w-3/4w-full">
-            <MdOutlineCalendarMonth className="text-xl text-gray-400" />
-            <input
-              onChange={(e) => setCheckout(e.target.value)}
-              type="date"
-              required
-              className="text-xs mx-3 text-gray-700 outline-none p-2 sm:py-1 w-full h-full"
-            />
-            <FaCheckCircle
-              className={`${
-                checkout == "" ? "text-gray-400" : "text-green-600"
-              } text-xl mx-2`}
-            />
-          </div>
-        </div>
       </form>
     </div>
   );

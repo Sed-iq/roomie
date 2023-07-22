@@ -1,12 +1,20 @@
 import "./../assets/card.css";
-import addcart from "./addcart";
 
-export default ({ name, details, price, room_pic, setCart, notify }) => {
+export default ({
+  setName,
+  setImg,
+  setPrice,
+  setBook,
+  name,
+  details,
+  price,
+  room_pic,
+}) => {
   return (
-    <div>
+    <div className="w-full">
       <main className="container">
         <section className="card flex flex-col justify-between text-black">
-          <div className=" bg-black w-full rounded h-60 sm:m-0 my-3 sm:h-64">
+          <div className=" w-full rounded h-60 sm:m-0 my-3 sm:h-64">
             <img
               id="img"
               src={room_pic}
@@ -27,8 +35,10 @@ export default ({ name, details, price, room_pic, setCart, notify }) => {
             <div className="btn">
               <button
                 onClick={() => {
-                  addcart(name, room_pic, price, setCart);
-                  notify("Room Added to Cart !");
+                  setBook(true);
+                  setName(name);
+                  setImg(room_pic);
+                  setPrice(price);
                 }}
                 className=" p-2 px-4 duration-100 hover:bg-gray-800 text-sm opensans-b w-3/4 bg-black text-white"
               >

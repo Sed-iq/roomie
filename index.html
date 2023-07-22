@@ -10,27 +10,31 @@
     <noscript> You need javascript to run this website </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-	 <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <!-- <script src="/src/components/paystack.js"></script> -->
     <script defer>
       function PAY(email, amount) {
-        var done;
-        var handler = PaystackPop.setup({
-          key: "pk_test_59dcc54b8a0254dca5c74661426d6204cbcedc15",
-          email: email,
-          amount: amount * 100 * 7.3, // Dollar rate of 730 naira,
-          currency: "NGN",
-          ref: "" + Math.floor(Math.random() * 1000000000 + 1),
-          onClose: function () {
-            alert("Window closed, payment not complete!");
-          },
-          callback: function (response) {
-            localStorage.clear();
-            location = "/";
-            // let message = "Payment complete! Reference: " + response.reference;
-          },
-        });
-        handler.openIframe();
+        try {
+          var done;
+          var handler = PaystackPop.setup({
+            key: "pk_test_59dcc54b8a0254dca5c74661426d6204cbcedc15",
+            email: email,
+            amount: amount * 100 * 7.3, // Dollar rate of 730 naira,
+            currency: "NGN",
+            ref: "" + Math.floor(Math.random() * 1000000000 + 1),
+            onClose: function () {
+              alert("Window closed, payment not complete!");
+            },
+            callback: function (response) {
+              localStorage.clear();
+              location = "/";
+            },
+          });
+          handler.openIframe();
+        } catch (err) {
+          return false;
+          console.log("Error starting modal");
+        }
       }
     </script>
   </body>

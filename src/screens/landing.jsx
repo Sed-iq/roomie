@@ -36,6 +36,7 @@ import Footer from "../components/footer";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 import About from "./about";
+import Booking_modal from "./booking_modal";
 export default ({ show }) => {
   const notify = (message) =>
     toast.success(message, {
@@ -50,9 +51,23 @@ export default ({ show }) => {
   const $cart = JSON.parse(localStorage.getItem("cart_data"));
   const [cart, setCart] = useState($cart.length);
   const [about, setAbout] = useState(false);
+  const [name, setName] = useState();
+  const [img, setImg] = useState();
+  const [price, setPrice] = useState();
+  const [booking, showBooking] = useState(false);
   return (
     <div className="relative w-full  overflow-x-hidden">
       {about == true ? <About setAbout={setAbout} /> : null}
+      {booking == true ? (
+        <Booking_modal
+          img={img}
+          setCart={setCart}
+          notify={notify}
+          price={price}
+          name={name}
+          setBooking={showBooking}
+        />
+      ) : null}
       <Nav cart={cart} show={show} setAbout={setAbout} />
       <div id="banner" className="flex justify-center items-center">
         <div className="text-white h-full w-full">
@@ -94,34 +109,40 @@ export default ({ show }) => {
 
       <div className="text-black my-4 font-bold ">
         <p className="text-center text-xl text-slate-800 my-5">Recent Rooms</p>
-        <div className="sm:flex justify-center">
-          <div className="mx-3">
+        <div className="sm:flex justify-evenly">
+          <div className="sm:w-1/3 mx-3">
             <Card
-              setCart={setCart}
+              setBook={showBooking}
+              setImg={setImg}
+              setName={setName}
+              setPrice={setPrice}
               name={"Keystone Hotels"}
               details={"Perfect resort with lush comfort, you'll ever find"}
               price={200}
-              notify={notify}
               room_pic={Keystone}
             />
           </div>
-          <div className="mx-3">
+          <div className="sm:w-1/3 mx-3">
             <Card
-              setCart={setCart}
+              setBook={showBooking}
+              setImg={setImg}
+              setName={setName}
+              setPrice={setPrice}
               name={"Habour bay Hotels"}
               details={"Great view, with quaility resources for your pleasure"}
               price={150}
-              notify={notify}
               room_pic={harbour_bay}
             />
           </div>{" "}
-          <div className="mx-3">
+          <div className="sm:w-1/3 mx-3">
             <Card
-              setCart={setCart}
+              setBook={showBooking}
+              setImg={setImg}
+              setName={setName}
+              setPrice={setPrice}
               name={"Empire State"}
               details={"Close to the big apple, beautiful resorts."}
               price={500}
-              notify={notify}
               room_pic={empire_state}
             />
           </div>
@@ -159,18 +180,24 @@ export default ({ show }) => {
           <Two_card
             one={one}
             two={two}
+            setBook={showBooking}
+            setImg={setImg}
+            setName={setName}
+            setPrice={setPrice}
             first={"Explore"}
             second={"Africa"}
             third={"Uncover"}
             fourth={"Nature"}
             icon={<FaGlobeAsia className="mx-2 text-xl" />}
             reverse={false}
-            setCart={setCart}
-            notify={notify}
           />
         </div>
         <div>
           <Two_card
+            setBook={showBooking}
+            setImg={setImg}
+            setName={setName}
+            setPrice={setPrice}
             one={four}
             two={three}
             first={"Adentures"}
@@ -179,12 +206,14 @@ export default ({ show }) => {
             fourth={"Comfort"}
             icon={<FaHotel className="mx-2 text-xl" />}
             reverse={true}
-            setCart={setCart}
-            notify={notify}
           />
         </div>
         <div>
           <Two_card
+            setBook={showBooking}
+            setImg={setImg}
+            setName={setName}
+            setPrice={setPrice}
             one={five}
             two={six}
             first={"Discover"}
@@ -193,8 +222,6 @@ export default ({ show }) => {
             fourth={"Pleasure"}
             icon={<MdLocationCity className="mx-2 text-xl" />}
             reverse={false}
-            setCart={setCart}
-            notify={notify}
           />
         </div>
       </div>

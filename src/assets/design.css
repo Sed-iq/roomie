@@ -3,7 +3,7 @@
     height: 500px;
     background-size: cover;
     background-position: center;
-    /* background-image: url(./info.jpg); */
+    background-image: url(./info.jpg);
   }
   #popular {
     height: 430px;
@@ -19,17 +19,31 @@
     height: 150px;
     width: 150px;
   }
+  #modal {
+    height: 70%;
+  }
+}
+button {
+  border-radius: 3px;
+  border: 0px solid transparent;
 }
 #cart-img {
   height: 100px;
   overflow: hidden;
 }
+#booking-modal {
+  backdrop-filter: blur(1.1em);
+}
+
 @media (max-width: 640px) {
   #banner {
     height: 600px;
     background-size: cover;
     background-position: center;
     background-image: url(./info.jpg);
+  }
+  #modal {
+    height: 70%;
   }
   #load_modal {
     height: 100px;
